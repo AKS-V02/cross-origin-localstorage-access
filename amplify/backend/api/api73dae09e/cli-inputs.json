@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "paths": {
+    "/items": {
+      "name": "/items",
+      "lambdaFunction": "childrenprojectabc3ca68",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}
