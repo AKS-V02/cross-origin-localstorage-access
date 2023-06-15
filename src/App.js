@@ -147,30 +147,32 @@ Amplify.configure(updatedAwsConfig);
 
 
 
-function App({ signOut, user }) {
+// function App({ signOut, user }) 
+function App() {
   const [localStore, setLocalStore] = useState(null);
+  const [user, setUser] = useState(null);
   // const serchparam = new URLSearchParams(document.location.search);
   // const PARENT_USER_POOL_DOMAIN = "paraent-pool-dev.auth.ap-south-1.amazoncognito.com";
   // var localStore = null;
-  // useEffect(() => {
-  //   Hub.listen('auth', ({ payload: { event, data } }) => {
-  //     switch (event) {
-  //       case 'signIn':
-  //       case 'cognitoHostedUI':
-  //         getUser().then(userData => setUser(userData));
-  //         break;
-  //       case 'signOut':
-  //         setUser(null);
-  //         break;
-  //       case 'signIn_failure':
-  //       case 'cognitoHostedUI_failure':
-  //         console.log('Sign in failure', data);
-  //         break;
-  //     }
-  //   });
+  useEffect(() => {
+    Hub.listen('auth', ({ payload: { event, data } }) => {
+      switch (event) {
+        case 'signIn':
+        case 'cognitoHostedUI':
+          getUser().then(userData => setUser(userData));
+          break;
+        case 'signOut':
+          setUser(null);
+          break;
+        case 'signIn_failure':
+        case 'cognitoHostedUI_failure':
+          console.log('Sign in failure', data);
+          break;
+      }
+    });
 
-  //   getUser().then(userData => setUser(userData));
-  // }, []);
+    getUser().then(userData => setUser(userData));
+  }, []);
 
   function getUser() {
     return Auth.currentAuthenticatedUser({
@@ -180,17 +182,17 @@ function App({ signOut, user }) {
       .catch(() => console.log('Not signed in'));
   }
   
-  useEffect(() => {
-    if(user.username!==""){
-      setLocalStore(JSON.stringify(window.localStorage));
-      getUser();
-      // Auth.currentSession().then(Data => console.log('signed in'+JSON.stringify(Data)))
-      // .catch(() => console.log('invalid session'));
-    }else {
-      setLocalStore({});
-    }
+  // useEffect(() => {
+  //   if(user.username!==""){
+  //     setLocalStore(JSON.stringify(window.localStorage));
+  //     getUser();
+  //     // Auth.currentSession().then(Data => console.log('signed in'+JSON.stringify(Data)))
+  //     // .catch(() => console.log('invalid session'));
+  //   }else {
+  //     setLocalStore({});
+  //   }
 
-  },[user.username]);
+  // },[user.username]);
 
 
   async function callApi(){
