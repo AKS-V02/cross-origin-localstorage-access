@@ -35,7 +35,7 @@ const updatedAwsConfig = {
         "scope": [
             "openid"
         ],
-        "redirectSignIn": "https://main.d3hylets18emzs.amplifyapp.com/,https://main.dhtu7f4vmkj8g.amplifyapp.com/",
+        "redirectSignIn": "https://main.dhtu7f4vmkj8g.amplifyapp.com/",
         "redirectSignOut": "https://main.d3hylets18emzs.amplifyapp.com/",
         "responseType": "code"
     },
@@ -235,6 +235,7 @@ function App() {
       ) : (
         <button onClick={() => Auth.federatedSignIn()}>Federated Sign In</button>
       )} */}
+      <button onClick={() => Auth.federatedSignIn()}>Federated Sign In</button>
     </div>
   );
 }
