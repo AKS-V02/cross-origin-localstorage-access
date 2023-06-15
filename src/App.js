@@ -236,4 +236,4 @@ function App({ signOut, user }) {
     </div>
   );
 }
-export default withAuthenticator(App);
+export default App;
