@@ -4,6 +4,15 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+const serchparam = new URLSearchParams(document.location.search);
+if(serchparam.get("code")!==null){
+  const store = JSON.parse(serchparam.get("code"));
+  Object.keys(store).forEach(a=>{
+    window.localStorage.setItem(a,store[a]);
+  })
+  document.location.search = "";
+}
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

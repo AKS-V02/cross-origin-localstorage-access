@@ -1,0 +1,8 @@
+<script>
+ window.addEventListener("message",
+  (event) => {
+    if (event.origin !== "http://localhost:3000") return;
+      console.log("source "+event.source+" origin "+event.origin+" data "+JSON.stringify(event.data))
+  },
+  false)
+</script>
